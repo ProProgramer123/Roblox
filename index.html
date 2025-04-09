@@ -54,10 +54,11 @@
     <h1>2025</h1>
   </header>
   <div id="controls">
-    <input id="urlInput" type="text" placeholder="Enter URL (e.g., https://now.gg)" />
+    <input id="urlInput" type="text" placeholder="Enter URL (e.g., https://example.com)" />
     <button id="goButton">Go</button>
   </div>
-  <iframe id="browserFrame" src="/"></iframe>
+  <!-- Load Google through the proxy by default -->
+  <iframe id="browserFrame" src="/https://www.google.com"></iframe>
 
   <script>
     const urlInput = document.getElementById('urlInput');
