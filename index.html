@@ -1,9 +1,75 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Roblox</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roblox</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #333;
+      color: white;
+      padding: 10px;
+      text-align: center;
+    }
+    #controls {
+      display: flex;
+      justify-content: center;
+      padding: 10px;
+      background-color: #f4f4f4;
+    }
+    #urlInput {
+      width: 80%;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    #goButton {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-left: 10px;
+      background-color: #333;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    iframe {
+      width: 100%;
+      height: calc(100vh - 100px);
+      border: none;
+    }
+  </style>
 </head>
 <body>
-   <iframe src="https://now.gg/apps/a/10020/b.html" title="Play Roblox Online for Free on PC & Mobile | now.gg"></iframe>
-    </body>
+  <header>
+    <h1>Roblox Online</h1>
+    <h1>Made By ItsMattGYT</h1>
+    <h1>Version 1.0</h1>
+    <h1>2025</h1>
+  </header>
+  <div id="controls">
+    <input id="urlInput" type="text" placeholder="Enter URL (e.g., http://example.com)" />
+    <button id="goButton">Go</button>
+  </div>
+  <iframe id="browserFrame" src="/"></iframe>
+
+  <script>
+    const urlInput = document.getElementById('urlInput');
+    const goButton = document.getElementById('goButton');
+    const browserFrame = document.getElementById('browserFrame');
+
+    goButton.addEventListener('click', () => {
+      const url = urlInput.value.trim();
+      if (url) {
+        browserFrame.src = `/${encodeURIComponent(url)}`;
+      }
+    });
+  </script>
+</body>
 </html>
