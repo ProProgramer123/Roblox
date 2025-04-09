@@ -9,8 +9,8 @@ const proxy = httpProxy.createProxyServer({});
 // Create an HTTP server
 const server = http.createServer((req, res) => {
   if (req.url === '/') {
-    // Proxy the request to Google
-    const targetUrl = 'https://www.google.com';
+    // Proxy the request to now.gg
+    const targetUrl = 'https://now.gg/apps/a/19900/b.html';
     proxy.web(req, res, { target: targetUrl, changeOrigin: true }, (err) => {
       console.error('Proxy error:', err.message);
       res.writeHead(500, { 'Content-Type': 'text/plain' });
