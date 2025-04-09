@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Roblox</title>
+  <title>Roblox Proxy Browser</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -48,13 +48,13 @@
 </head>
 <body>
   <header>
-    <h1>Roblox Online</h1>
+    <h1>Roblox Proxy Browser</h1>
     <h1>Made By ItsMattGYT</h1>
     <h1>Version 1.0</h1>
     <h1>2025</h1>
   </header>
   <div id="controls">
-    <input id="urlInput" type="text" placeholder="Enter URL (e.g., http://example.com)" />
+    <input id="urlInput" type="text" placeholder="Enter URL (e.g., https://now.gg)" />
     <button id="goButton">Go</button>
   </div>
   <iframe id="browserFrame" src="/"></iframe>
@@ -64,9 +64,11 @@
     const goButton = document.getElementById('goButton');
     const browserFrame = document.getElementById('browserFrame');
 
+    // When the "Go" button is clicked, update the iframe's source to use the proxy
     goButton.addEventListener('click', () => {
       const url = urlInput.value.trim();
       if (url) {
+        // Pass the URL to the proxy server
         browserFrame.src = `/${encodeURIComponent(url)}`;
       }
     });
