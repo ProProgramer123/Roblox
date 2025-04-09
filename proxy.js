@@ -9,18 +9,17 @@ const proxy = httpProxy.createProxyServer({});
 // Create an HTTP server
 const server = http.createServer((req, res) => {
   if (req.url === '/') {
-    // Proxy the request to now.gg
-    const targetUrl = 'https://now.gg/apps/a/19900/b.html';
-    proxy.web(req, res, { target: targetUrl, changeOrigin: true }, (err) => {
-      console.error('Proxy error:', err.message);
-      res.writeHead(500, { 'Content-Type': 'text/plain' });
-      res.end('Something went wrong.');
-    });
-
-    // Modify headers to allow embedding in iframe
-    proxy.on('proxyRes', (proxyRes) => {
-      delete proxyRes.headers['x-frame-options']; // Remove X-Frame-Options
-      delete proxyRes.headers['content-security-policy']; // Remove CSP headers
+    // Serve the roblox.mhtml file
+    const filePath = path.join(__dirname, 'roblox.mhtml');
+    fs.readFile(filePath, (err, data) => {
+      if (err) {
+        console.error('Error loading roblox.mhtml:', err.message);
+        res.writeHead(500, { 'Content-Type': 'text/plain' });
+        res.end('Error loading roblox.mhtml');
+      } else {
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.end(data);
+      }
     });
   } else {
     // Extract the target URL from the request
