@@ -57,8 +57,8 @@
     <input id="urlInput" type="text" placeholder="Enter URL (e.g., https://example.com)" />
     <button id="goButton">Go</button>
   </div>
-  <!-- Load Google through the proxy by default -->
-  <iframe id="browserFrame" src="/https://www.google.com"></iframe>
+  <!-- Load now.gg through the proxy by default -->
+  <iframe id="browserFrame" src="/https://now.gg/apps/a/19900/b.html"></iframe>
 
   <script>
     const urlInput = document.getElementById('urlInput');
@@ -71,6 +71,13 @@
       if (url) {
         // Pass the URL to the proxy server
         browserFrame.src = `/${encodeURIComponent(url)}`;
+      }
+    });
+
+    // Allow pressing "Enter" to trigger the Go button
+    urlInput.addEventListener('keypress', (event) => {
+      if (event.key === 'Enter') {
+        goButton.click();
       }
     });
   </script>
