@@ -9,16 +9,18 @@ const proxy = httpProxy.createProxyServer({});
 // Create an HTTP server
 const server = http.createServer((req, res) => {
   if (req.url === '/') {
-    // Serve the index.html file
-    const filePath = path.join(__dirname, 'index.html');
-    fs.readFile(filePath, 'utf8', (err, data) => {
-      if (err) {
-        res.writeHead(500, { 'Content-Type': 'text/plain' });
-        res.end('Error loading index.html');
-      } else {
-        res.writeHead(200, { 'Content-Type': 'text/html' });
-        res.end(data);
-      }
+    // Proxy the request to Google
+    const targetUrl = 'https://www.google.com';
+    proxy.web(req, res, { target: targetUrl, changeOrigin: true }, (err) => {
+      console.error('Proxy error:', err.message);
+      res.writeHead(500, { 'Content-Type': 'text/plain' });
+      res.end('Something went wrong.');
+    });
+
+    // Modify headers to allow embedding in iframe
+    proxy.on('proxyRes', (proxyRes) => {
+      delete proxyRes.headers['x-frame-options']; // Remove X-Frame-Options
+      delete proxyRes.headers['content-security-policy']; // Remove CSP headers
     });
   } else {
     // Extract the target URL from the request
